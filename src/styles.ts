@@ -34,6 +34,7 @@ const styles: { [key: string]: CSS.Properties } = {
     display: 'flex',
     flexDirection: 'column',
     pointerEvents: 'auto',
+    overflow: 'hidden',
   },
   headerWrapper: {
     width: '100%',
@@ -54,7 +55,7 @@ const styles: { [key: string]: CSS.Properties } = {
   },
   content: {
     flex: 1,
-    overflow: 'auto',
+    overflow: 'visible',
     position: 'relative',
   },
 };

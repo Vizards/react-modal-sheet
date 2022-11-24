@@ -90,3 +90,23 @@ export function validateSnapTo({
 
   return Math.max(Math.round(snapTo), 0);
 }
+
+export function getElementTranslateYNumber(
+  element?: HTMLElement | string | null
+) {
+  if (typeof element === 'string') {
+    element = document.querySelector(element) as HTMLElement;
+  }
+  const translateYString = element?.style?.transform
+    ?.match(/Y\(.*?p/)?.[0]
+    .replace('Y(', '')
+    .replace('p', '');
+  return translateYString ? Number(translateYString) : 0;
+}
+
+export function getElementHeight(element?: Element | string | null) {
+  if (typeof element === 'string') {
+    element = document.querySelector(element);
+  }
+  return element?.getBoundingClientRect().height || 0;
+}

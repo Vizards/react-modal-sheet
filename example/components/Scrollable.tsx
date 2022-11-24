@@ -44,7 +44,6 @@ const BoxList = styled.div`
   flex-direction: column;
   padding: 16px;
   padding-top: 0px;
-  overflow: auto;
 `;
 
 const Box = styled.div`

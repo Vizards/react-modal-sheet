@@ -27,7 +27,12 @@ import {
 
 import { SheetContextType, SheetProps } from './types';
 import { SheetContext } from './context';
-import { getClosest, inDescendingOrder, validateSnapTo } from './utils';
+import {
+  getClosest,
+  inDescendingOrder,
+  validateSnapTo,
+  getElementTranslateYNumber,
+} from './utils';
 import styles from './styles';
 
 const Sheet = React.forwardRef<any, SheetProps>(
@@ -113,8 +118,13 @@ const Sheet = React.forwardRef<any, SheetProps>(
 
     const onDragEnd = useEvent((_, { velocity }: PanInfo) => {
       if (velocity.y > DRAG_VELOCITY_THRESHOLD) {
+        const translateY = getElementTranslateYNumber(
+          '.react-modal-sheet-content'
+        );
         // User flicked the sheet down
-        onClose();
+        if (translateY >= 0) {
+          onClose();
+        }
       } else {
         const sheetEl = sheetRef.current as HTMLDivElement;
         const sheetHeight = sheetEl.getBoundingClientRect().height;
